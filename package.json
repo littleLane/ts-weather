@@ -4,7 +4,9 @@
   "description": "A command line based weather query tool！",
   "main": "index.js",
   "scripts": {
-    "start": "yarn ts-node src/index.ts"
+    "start": "yarn ts-node src/index.ts",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint --fix src --ext .ts"
   },
   "repository": {
     "type": "git",
@@ -19,14 +21,18 @@
   "homepage": "https://github.com/littleLane/ts-weather#readme",
   "devDependencies": {
     "@types/node": "^12.6.9",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-alloy": "^2.0.5",
     "husky": "^3.0.2",
+    "prettier": "^1.18.2",
     "ts-node": "^8.3.0",
-    "tslint": "^5.18.0",
     "typescript": "^3.5.3"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn tslint -c tslint.json './**/*.ts'"
+      "pre-commit": "yarn lint:fix"
     }
   },
   "dependencies": {
