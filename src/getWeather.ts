@@ -17,10 +17,10 @@ const log = console.log;
 //     });
 // }
 
-// async await 模式实现
+// async await  模式实现
 async function getWeather(params: IParams) {
     try {
-        const requestUrl: string = `${params.url}?city=${encodeURI(params.city)}&key=${params.key}`;
+        const requestUrl: string = `${params.url}?city=${encodeURI(params.city)}&key=${params.key}`
         const resData: AxiosResponse<IWeatherResponse> = await axios.get(requestUrl);
         handleResole(resData.data);
     } catch (error) {
