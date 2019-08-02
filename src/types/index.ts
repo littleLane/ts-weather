@@ -17,3 +17,12 @@ export interface IWeatherResponse {
     infocode: string;
     lives: ILive[];
 }
+
+export interface IConfigData {
+    url: string;
+    key: string;
+}
+
+export interface IParams extends IConfigData {
+    city: string;
+}
