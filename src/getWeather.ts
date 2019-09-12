@@ -46,9 +46,22 @@ function handleReject() {
 
 // async await  模式实现
 async function getWeather(params: IParams) {
+  if (!params.city) {
+    log(colors.red(`'city' is required！`));
+    return;
+  }
+
+  const queryParams = Object.keys(params)
+    .reduce((querys: string[], key: string) => {
+      if (key !== 'url') {
+        return querys.concat(`${key}=${encodeURI(params[key])}`);
+      }
+      return querys;
+    }, [])
+    .join('&');
+
   try {
-    const requestUrl = `${params.url}?city=${encodeURI(params.city)}&key=${params.key}`;
-    console.log(requestUrl);
+    const requestUrl = `${params.url}?${queryParams}`;
     const resData: AxiosResponse<IWeatherResponse> = await axios.get(requestUrl);
     handleResole(resData.data);
   } catch (error) {

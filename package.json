@@ -4,7 +4,7 @@
   "description": "A command line based weather query tool！",
   "main": "/src/index.js",
   "scripts": {
-    "start": "yarn ts-node src/index.ts --city 成都",
+    "start": "yarn ts-node src/index.ts --city 成都 --type base",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint --fix src --ext .ts"
   },

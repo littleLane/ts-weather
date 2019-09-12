@@ -4,7 +4,8 @@ import getWeather from './getWeather';
 
 const command = commander
   .version('0.1.0')
-  .option('-c, --city [name]', 'Add city name')
+  .option('-c, --city [name]', 'Add city chinese name')
+  .option('-t, --type [type]', 'Add real-time type')
   .parse(process.argv);
 
 if (process.argv.slice(2).length === 0) {
@@ -14,4 +15,5 @@ if (process.argv.slice(2).length === 0) {
 
 getWeather({
   city: command.city,
+  extensions: command.type,
 });

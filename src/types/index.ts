@@ -25,4 +25,6 @@ export interface IConfigData {
 
 export interface IParams extends IConfigData {
   city: string;
+  type?: string;
+  [key: string]: any;
 }
