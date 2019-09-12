@@ -2,9 +2,9 @@
   "name": "ts-weather",
   "version": "1.0.0",
   "description": "A command line based weather query tool！",
-  "main": "index.js",
+  "main": "/src/index.js",
   "scripts": {
-    "start": "yarn ts-node src/index.ts",
+    "start": "yarn ts-node src/index.ts --city 成都",
     "lint": "eslint src --ext .ts",
     "lint:fix": "eslint --fix src --ext .ts"
   },
@@ -12,7 +12,11 @@
     "type": "git",
     "url": "git+https://github.com/littleLane/ts-weather.git"
   },
-  "keywords": [],
+  "keywords": [
+    "typescript",
+    "weather",
+    "ts-weather"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
@@ -21,10 +25,11 @@
   "homepage": "https://github.com/littleLane/ts-weather#readme",
   "devDependencies": {
     "@types/node": "^12.6.9",
-    "@typescript-eslint/eslint-plugin": "^1.13.0",
-    "@typescript-eslint/parser": "^1.13.0",
+    "@typescript-eslint/eslint-plugin": "^2.2.0",
+    "@typescript-eslint/parser": "^2.2.0",
     "eslint": "^6.1.0",
-    "eslint-config-alloy": "^2.0.5",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.2",
     "prettier": "^1.18.2",
     "ts-node": "^8.3.0",

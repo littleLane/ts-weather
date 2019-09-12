@@ -1,28 +1,28 @@
 export interface ILive {
-    province: string;
-    city: string;
-    adcode: string;
-    weather: string;
-    temperature: string;
-    winddirection: string;
-    windpower: string;
-    humidity: string;
-    reporttime: string;
+  province: string;
+  city: string;
+  adcode: string;
+  weather: string;
+  temperature: string;
+  winddirection: string;
+  windpower: string;
+  humidity: string;
+  reporttime: string;
 }
 
 export interface IWeatherResponse {
-    status: string;
-    count: string;
-    info: string;
-    infocode: string;
-    lives: ILive[];
+  status: string;
+  count: string;
+  info: string;
+  infocode: string;
+  lives: ILive[];
 }
 
 export interface IConfigData {
-    url: string;
-    key: string;
+  url: string;
+  key: string;
 }
 
 export interface IParams extends IConfigData {
-    city: string;
+  city: string;
 }
