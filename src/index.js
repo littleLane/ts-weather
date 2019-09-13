@@ -52,7 +52,7 @@ if (process.argv.slice(2).length === 0) {
                 case 2:
                     type = _a.sent();
                     return [2 /*return*/, new Promise(function (resolve) {
-                            if (!city || !type) {
+                            if (!city) {
                                 command.outputHelp();
                                 process.exit();
                             }
@@ -62,14 +62,15 @@ if (process.argv.slice(2).length === 0) {
                             });
                         }).then(function (data) {
                             getWeather_1.default(data);
-                            process.exit();
                         })];
             }
         });
     });
 }
-// we --city 成都 --type base
-getWeather_1.default({
-    city: command.city,
-    extensions: command.type,
-});
+else {
+    // we --city 成都 --type base
+    getWeather_1.default({
+        city: command.city,
+        extensions: command.type,
+    });
+}

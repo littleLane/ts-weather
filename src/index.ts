@@ -16,7 +16,7 @@ if (process.argv.slice(2).length === 0) {
     const type = yield prompt('天气实时类型：');
 
     return new Promise(resolve => {
-      if (!city || !type) {
+      if (!city) {
         command.outputHelp();
         process.exit();
       }
@@ -27,13 +27,12 @@ if (process.argv.slice(2).length === 0) {
       });
     }).then(data => {
       getWeather(data);
-      process.exit();
     });
   });
+} else {
+  // we --city 成都 --type base
+  getWeather({
+    city: command.city,
+    extensions: command.type,
+  });
 }
-
-// we --city 成都 --type base
-getWeather({
-  city: command.city,
-  extensions: command.type,
-});

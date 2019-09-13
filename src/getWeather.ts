@@ -27,6 +27,8 @@ function handleResole(weatherData: IWeatherResponse) {
   log(colors.bold(`预报地区：`), colors.white(`${live.province} ${live.city}`));
   log(colors.bold(`预报详情：`), colors.green(`${live.weather} ${live.temperature}℃ ${live.winddirection}风`));
   log('================天气预报 end====================');
+
+  process.exit();
 }
 
 function handleReject() {

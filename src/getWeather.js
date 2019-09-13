@@ -62,6 +62,7 @@ function handleResole(weatherData) {
     log(colors_1.default.bold("\u9884\u62A5\u5730\u533A\uFF1A"), colors_1.default.white(live.province + " " + live.city));
     log(colors_1.default.bold("\u9884\u62A5\u8BE6\u60C5\uFF1A"), colors_1.default.green(live.weather + " " + live.temperature + "\u2103 " + live.winddirection + "\u98CE"));
     log('================天气预报 end====================');
+    process.exit();
 }
 function handleReject() {
     log(colors_1.default.red('天气服务出现异常！'));
