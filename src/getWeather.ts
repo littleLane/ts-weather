@@ -53,7 +53,7 @@ async function getWeather(params: IParams) {
 
   const queryParams = Object.keys(params)
     .reduce((querys: string[], key: string) => {
-      if (key !== 'url') {
+      if (key !== 'url' && params[key]) {
         return querys.concat(`${key}=${encodeURI(params[key])}`);
       }
       return querys;
