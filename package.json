@@ -21,8 +21,8 @@
     "typescript",
     "ts-weather"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "littleLane",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/littleLane/ts-weather/issues"
   },
