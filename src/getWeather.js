@@ -41,10 +41,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var colors_1 = __importDefault(require("colors"));
 var axios_1 = __importDefault(require("axios"));
+var cli_table_1 = __importDefault(require("cli-table"));
+var utils_1 = require("./utils");
 var factory_1 = __importDefault(require("./factory"));
 // tslint:disable-next-line: no-console
 var log = console.log;
-function handleResole(weatherData) {
+function handleResole(weatherData, params) {
     // status 为 0 时表示查询失败
     if (weatherData.status === '0') {
         log(colors_1.default.red('天气信息查询失败！'));
@@ -52,16 +54,52 @@ function handleResole(weatherData) {
     }
     // count 为 0 表示没有查到天气信息
     if (weatherData.count === '0') {
-        log(colors_1.default.yellow('天气信息查询失败！'));
+        log(colors_1.default.yellow("\u6CA1\u6709\u67E5\u5230 '" + params.city + "' \u5929\u6C14\u4FE1\u606F\uFF01"));
         return;
     }
-    // 获取并输出第一条天气信息
-    var live = weatherData.lives[0];
-    log('================天气预报 start====================');
-    log(colors_1.default.bold("\u9884\u62A5\u65F6\u95F4\uFF1A"), colors_1.default.yellow("" + live.reporttime));
-    log(colors_1.default.bold("\u9884\u62A5\u5730\u533A\uFF1A"), colors_1.default.white(live.province + " " + live.city));
-    log(colors_1.default.bold("\u9884\u62A5\u8BE6\u60C5\uFF1A"), colors_1.default.green(live.weather + " " + live.temperature + "\u2103 " + live.winddirection + "\u98CE"));
-    log('================天气预报 end====================');
+    if (params.extensions === 'all') {
+        var forecasts = weatherData.forecasts || [];
+        if (utils_1.isEmptyArray(forecasts)) {
+            log(colors_1.default.yellow("\u6CA1\u6709\u67E5\u5230 '" + params.city + "' \u5929\u6C14\u4FE1\u606F\uFF01"));
+        }
+        else {
+            var forecast = forecasts[0];
+            var table_1 = new cli_table_1.default({
+                head: ['日期', '星期', '白天', '晚上'],
+                colWidths: [15, 8, 22, 22]
+            });
+            if (!utils_1.isEmptyArray(forecast.casts)) {
+                forecast.casts.map(function (cast) {
+                    table_1.push([
+                        cast.date,
+                        cast.week,
+                        cast.dayweather + "\uFF08" + cast.daytemp + "\u2103\uFF0C" + cast.daywind + " " + cast.daypower + "\uFF09",
+                        cast.nightweather + "\uFF08" + cast.nighttemp + "\u2103\uFF0C" + cast.nightwind + " " + cast.nightpower + "\uFF09",
+                    ]);
+                });
+            }
+            log('================天气预报 start====================');
+            log(colors_1.default.bold("\u9884\u62A5\u65F6\u95F4\uFF1A"), colors_1.default.yellow("" + forecast.reporttime));
+            log(colors_1.default.bold("\u9884\u62A5\u5730\u533A\uFF1A"), colors_1.default.white(forecast.province + " " + forecast.city));
+            log(colors_1.default.bold("\u9884\u62A5\u8BE6\u60C5\uFF1A"));
+            log(table_1.toString());
+            log('================天气预报 end====================');
+        }
+    }
+    else {
+        var lives = weatherData.lives || [];
+        if (utils_1.isEmptyArray(lives)) {
+            log(colors_1.default.yellow("\u6CA1\u6709\u67E5\u5230 '" + params.city + "' \u5929\u6C14\u4FE1\u606F\uFF01"));
+        }
+        else {
+            var live = lives[0];
+            log('================天气预报 start====================');
+            log(colors_1.default.bold("\u9884\u62A5\u65F6\u95F4\uFF1A"), colors_1.default.yellow("" + live.reporttime));
+            log(colors_1.default.bold("\u9884\u62A5\u5730\u533A\uFF1A"), colors_1.default.white(live.province + " " + live.city));
+            log(colors_1.default.bold("\u9884\u62A5\u8BE6\u60C5\uFF1A"), colors_1.default.green(live.weather + " " + live.temperature + "\u2103 " + live.winddirection + "\u98CE"));
+            log('================天气预报 end====================');
+        }
+    }
     process.exit();
 }
 function handleReject() {
@@ -102,7 +140,7 @@ function getWeather(params) {
                     return [4 /*yield*/, axios_1.default.get(requestUrl)];
                 case 2:
                     resData = _a.sent();
-                    handleResole(resData.data);
+                    handleResole(resData.data, params);
                     return [3 /*break*/, 4];
                 case 3:
                     error_1 = _a.sent();
