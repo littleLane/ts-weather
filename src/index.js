@@ -15,7 +15,7 @@ if (process.argv.slice(2).length === 0) {
             type: 'input',
             message: 'Input city of chinese name',
             name: 'city',
-            default: undefined
+            default: undefined,
         },
         {
             type: 'list',
@@ -25,15 +25,15 @@ if (process.argv.slice(2).length === 0) {
                 {
                     key: 'all',
                     name: 'all',
-                    value: 'all'
+                    value: 'all',
                 },
                 {
                     key: 'base',
                     name: 'base',
-                    value: 'base'
-                }
-            ]
-        }
+                    value: 'base',
+                },
+            ],
+        },
     ];
     inquirer_1.default.prompt(promptList).then(function (answers) {
         getWeather_1.default(answers);
