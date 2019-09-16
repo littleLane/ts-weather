@@ -66,7 +66,7 @@ function handleResole(weatherData, params) {
             var forecast = forecasts[0];
             var table_1 = new cli_table_1.default({
                 head: ['日期', '星期', '白天', '晚上'],
-                colWidths: [15, 8, 22, 22]
+                colWidths: [15, 8, 22, 22],
             });
             if (!utils_1.isEmptyArray(forecast.casts)) {
                 forecast.casts.map(function (cast) {

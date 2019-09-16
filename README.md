@@ -2,7 +2,7 @@
 
 > A command line based weather query tool！
 
-![@littlelane/hf-cli](https://img.shields.io/badge/npm-v0.3.0-brightgreen.svg)
+![@littlelane/hf-cli](https://img.shields.io/badge/npm-v0.4.0-brightgreen.svg)
 
 ## Install
 
